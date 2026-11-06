@@ -37,8 +37,10 @@ comes once we qualify for Extended Quota.
 ### Matching songs across services
 - **ISRC** (the recording's international ID) is the join key: Spotify, Apple, TIDAL
   and Deezer all expose it.
-- **Odesli / song.link** maps a link from one service to all the others, but its
-  public API now requires a key *(no published commercial terms; ask them)*.
+- **Odesli / song.link**'s public API **retired on 2026-07-31**. Access now requires
+  allowlisting ([notice](https://linktr.ee/help/en/articles/15201827-sunsetting-the-songlink-odesli-public-api)).
+  Plan on our own matching: ISRC where services expose it (Spotify, Apple, TIDAL,
+  Deezer), and title + artist + duration search for YouTube, which has no ISRC.
 - **MusicBrainz** has open data with ISRC lookup, a candidate neutral catalog for
   search *(rate limits and commercial terms unverified)*.
 - Spotify's public **oEmbed** endpoint resolves a pasted link without login, but
@@ -54,11 +56,11 @@ comes once we qualify for Extended Quota.
 4. **Suno** via links.
 
 ## Outreach checklist (Freio Labs, LLC)
-- [ ] Spotify: confirm a Non-Streaming SDA may charge for hosting; ask about the
-      Extended Quota path below 250k MAU.
-- [ ] Apple: App Review pre-submission question on Guideline 4.5.2(i) for paid hosting.
-- [ ] TIDAL partnerships: commercial agreement.
-- [ ] Odesli: API key and commercial terms.
+- [ ] Spotify: ask about the Extended Quota path below 250k MAU (policy §IV.3
+      already allows Non-Streaming SDAs to charge).
+- [ ] Apple: book a "Meet with App Review" call about Guideline 4.5.2(i) and paid hosting.
+- [ ] TIDAL: post in their GitHub Discussions (no private channel exists).
+- [ ] Odesli: request allowlisting (public API retired).
 - [ ] Be ready to show App Review that each service permits our use (Guideline 5.2.2).
 
 ## Sync: what's physically achievable
