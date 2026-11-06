@@ -18,12 +18,7 @@ setup:
 icons:
     ./scripts/build-icons.sh
 
-# Create the hosted PartyPlaylist Supabase project (run `npx supabase login` first)
-db-create region="us-east-1":
-    npx supabase orgs list
-    @read -p "Org ID for Freio Labs: " org && npx supabase projects create PartyPlaylist --org-id "$org" --region {{region}}
-
-# Link this repo to the hosted PartyPlaylist project and push migrations
-db-push project-ref:
-    npx supabase link --project-ref {{project-ref}}
-    npx supabase db push
+# Apply new migrations to the hosted PartyPlaylist Supabase project
+db-push:
+    npx supabase link --project-ref uqlxzstbllzyosggbpca
+    npx supabase db push --remote

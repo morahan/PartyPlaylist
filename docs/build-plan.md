@@ -73,12 +73,15 @@ exposes playback position.
 - `just ta`: lint everything, typecheck, all tests (pre-push and CI run this).
 - `just setup`: install deps and enable the git hooks.
 
-## Supabase setup (one-time, owner)
-1. `npx supabase login`
-2. `just db-create`: creates the hosted project named **PartyPlaylist** under the
-   Freio Labs org (prompts for the org ID and a database password)
-3. `just db-push <project-ref>`: links this repo and applies the migrations
-4. Copy `.env.example` to `.env.local` and fill in the URL and publishable key
+## Supabase project
+- **Project:** PartyPlaylist (`uqlxzstbllzyosggbpca`), org **Freio Labs**
+  (freiolabs@gmail.com), region `us-east-1`, Free plan.
+- **Dashboard:** https://supabase.com/dashboard/project/uqlxzstbllzyosggbpca
+- **API URL:** https://uqlxzstbllzyosggbpca.supabase.co. The app reads it plus the
+  publishable key from `.env.local` (see `.env.example`).
+- **Apply new migrations:** `just db-push` (needs `npx supabase login` as
+  freiolabs@gmail.com, or `SUPABASE_ACCESS_TOKEN`).
+- Free projects pause after 7 days without activity; upgrade to Pro before launch.
 
 ## Open questions
 1. Send the outreach drafts in `docs/outreach/` (needs the Gmail connector
