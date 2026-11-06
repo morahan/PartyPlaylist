@@ -8,12 +8,8 @@ const styles = StyleSheet.create({
     paddingTop: "10%",
   },
 
-  Head: {
-    //: "35%",
-  },
-
   Logo: {
-    height: 117, width: 117, alignSelf: "center", paddingTop: 100
+    height: 117, width: 117, alignSelf: "center"
   },
 
   Welcome: {
@@ -31,12 +27,6 @@ const styles = StyleSheet.create({
     borderRadius: 17,
     height: '25%',
     width: "50%"
-  },
-
-  Btn: {
-    paddingTop: 100,
-    backgroundColor: "green",
-    color: "#ffff",
   },
 
   Text: {

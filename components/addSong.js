@@ -1,26 +1,23 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, ScrollView, Picker, Slider, Switch, TouchableOpacity, Button, Image, SafeAreaView } from 'react-native';
+import { Text, View, TextInput, Button } from 'react-native';
 import styles from '../styles/styles.js';
 
-
-function addSong() {
+// Not yet mounted; search will go through the backend once Phase 1 lands.
+function AddSong() {
     const [searchedSong, setSearchedSong] = useState('');
-    const [songList, setSongList] = useState([]);
 
-    const songSearchHandler = (searchedSong) => {
-        console.log(searchedSong);
-    }
     return (
         <View style={styles.Search}>
             <Text style={styles.Text}>Search Spotify for Track</Text>
             <TextInput
                 placeholder='track name'
                 style={styles.Input}
-                onChangeText={songSearchHandler}
+                value={searchedSong}
+                onChangeText={setSearchedSong}
             />
-            <Button title="search" style={styles.Btn} />
+            <Button title="search" onPress={() => console.log(searchedSong)} />
         </View>
     );
 }
 
-export default addSong;
+export default AddSong;
