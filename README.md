@@ -34,7 +34,7 @@ npm start     # Expo dev server
 | `src/core/` | Provider-independent rules (rotation, veto, seats, go-live, finalize) and sync math |
 | `src/screens/` | App screens |
 | `scripts/`, `.githooks/` | Test runners and git hooks |
-| `assets/` | Icon, splash, logos |
+| `assets/` | Icons and logo, generated from `assets/source/logo.jpg` by `just icons` (Inkscape) |
 
 ## Secrets
 `config.js` and `.env` are gitignored. Never commit credentials. The Spotify client

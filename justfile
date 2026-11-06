@@ -13,3 +13,7 @@ test-all:
 setup:
     npm install
     git config core.hooksPath .githooks
+
+# Regenerate app icons and logo from assets/source/logo.jpg (needs Inkscape)
+icons:
+    ./scripts/build-icons.sh
