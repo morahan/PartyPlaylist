@@ -33,6 +33,8 @@ npm start     # Expo dev server
 |---|---|
 | `src/core/` | Provider-independent rules (rotation, veto, seats, go-live, finalize) and sync math |
 | `src/screens/` | App screens |
+| `src/lib/supabase.ts` | Supabase client (env in `.env.local`, see `.env.example`) |
+| `supabase/` | **PartyPlaylist** Supabase project: migrations (schema, rules, row-level security) and PGlite tests |
 | `scripts/`, `.githooks/` | Test runners and git hooks |
 | `assets/` | Icons and logo, generated from `assets/source/logo.jpg` by `just icons` (Inkscape) |
 

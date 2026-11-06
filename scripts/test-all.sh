@@ -5,4 +5,5 @@ cd "$(git rev-parse --show-toplevel)"
 
 npx eslint .
 npx tsc --noEmit
-npx jest --ci
+# PGlite (database tests) loads WebAssembly via dynamic import.
+NODE_OPTIONS=--experimental-vm-modules npx jest --ci

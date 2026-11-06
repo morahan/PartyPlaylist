@@ -14,13 +14,16 @@
     "prepare": "git config core.hooksPath .githooks || true"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.119.0",
     "expo": "~58.0.23",
     "expo-splash-screen": "~58.0.13",
+    "expo-sqlite": "~58.0.15",
     "expo-status-bar": "~58.0.4",
     "react": "19.3.0",
     "react-native": "0.88.1"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.15",
     "@testing-library/react-native": "^14.1.0",
     "@types/jest": "30.0.0",
     "@types/react": "~19.3.0",
@@ -28,9 +31,36 @@
     "eslint-config-expo": "~58.0.4",
     "jest": "~30.5.2",
     "jest-expo": "~58.0.14",
+    "supabase": "^3.0.0",
     "typescript": "~6.0.3"
   },
   "jest": {
-    "preset": "jest-expo"
+    "projects": [
+      {
+        "displayName": "app",
+        "preset": "jest-expo",
+        "testPathIgnorePatterns": [
+          "/node_modules/",
+          "<rootDir>/supabase/"
+        ]
+      },
+      {
+        "displayName": "db",
+        "testEnvironment": "node",
+        "testMatch": [
+          "<rootDir>/supabase/tests/**/*.test.ts"
+        ],
+        "transform": {
+          "\\.ts$": [
+            "babel-jest",
+            {
+              "presets": [
+                "babel-preset-expo"
+              ]
+            }
+          ]
+        }
+      }
+    ]
   }
 }

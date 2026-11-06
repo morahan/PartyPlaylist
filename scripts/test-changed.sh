@@ -15,6 +15,11 @@ while IFS= read -r f; do
   [[ -n "$f" && -f "$f" ]] && files+=("$f")
 done < <(grep -E '\.(js|jsx|ts|tsx)$' <<<"$changed" || true)
 
+# SQL isn't imported by any test, so a schema change runs the database tests directly.
+if grep -qE '^supabase/.*\.sql$' <<<"$changed"; then
+  while IFS= read -r f; do files+=("$f"); done < <(ls supabase/tests/*.test.ts)
+fi
+
 if [[ ${#files[@]} -eq 0 ]]; then
   echo "No changed source files to check."
   exit 0
@@ -22,4 +27,4 @@ fi
 
 echo "Checking ${#files[@]} changed file(s)..."
 npx eslint --no-warn-ignored "${files[@]}"
-npx jest --findRelatedTests --passWithNoTests "${files[@]}"
+NODE_OPTIONS=--experimental-vm-modules npx jest --findRelatedTests --passWithNoTests "${files[@]}"

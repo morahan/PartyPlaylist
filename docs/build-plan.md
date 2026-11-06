@@ -9,6 +9,9 @@ Read `product-spec.md` for *what* and `platform-research.md` for *why* first.
   licensed audio, so we stay a "non-streaming" app.
 - Sync: automatic shared clock + count-in by default; optional tap alignment
   (≤ 10 s) only when > 2 s off or on request; pause-only corrections.
+- Launch export targets: **Apple Music + YouTube Music**. Spotify users listen via
+  the host device until Spotify approves us.
+- Backend: **Supabase**, project named **PartyPlaylist** (`supabase/`).
 
 ## Target architecture
 
@@ -23,8 +26,10 @@ Read `product-spec.md` for *what* and `platform-research.md` for *why* first.
  └─ RevenueCat SDK (IAP)                    └─ RevenueCat webhook → entitlements
 ```
 
-- **Backend:** Supabase (Postgres + auth + realtime) is the fastest route; a small
-  Node service is the alternative.
+- **Backend:** Supabase (Postgres + auth + realtime). The schema in
+  `supabase/migrations/` enforces seats, veto quorum, go-live and finalize in the
+  database, with row-level security so only members see a party. Its tests run in
+  PGlite (Postgres in WebAssembly), so no Docker is needed.
 - **Payments:** Apple and Google require their own in-app purchase for digital
   unlocks. RevenueCat maps purchases → `purchased` / `premium`, which `seatLimit()`
   reads.
@@ -68,8 +73,13 @@ exposes playback position.
 - `just ta`: lint everything, typecheck, all tests (pre-push and CI run this).
 - `just setup`: install deps and enable the git hooks.
 
+## Supabase setup (one-time, owner)
+1. `npx supabase login`
+2. `just db-create`: creates the hosted project named **PartyPlaylist** under the
+   Freio Labs org (prompts for the org ID and a database password)
+3. `just db-push <project-ref>`: links this repo and applies the migrations
+4. Copy `.env.example` to `.env.local` and fill in the URL and publishable key
+
 ## Open questions
-1. OK to lead with Apple Music + YouTube export at launch, with Spotify users
-   listening via the host device until Spotify approves us?
-2. Want me to draft the outreach emails (Spotify, Apple App Review, TIDAL, Odesli)?
-3. Supabase or a custom Node backend?
+1. Send the outreach drafts in `docs/outreach/` (needs the Gmail connector
+   authorized for FreioLabs@gmail.com).
